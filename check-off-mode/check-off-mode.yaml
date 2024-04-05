@@ -21,4 +21,5 @@ spec:
         message: "VerticalPodAutoscaler '{{ request.object.metadata.name }}' has recommendation mode set to 'Off'."
         pattern:
           spec:
-            updateMode: "Off" 
+            updatePolicy:
+              updateMode: "Off" 

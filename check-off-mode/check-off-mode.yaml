@@ -1,0 +1,24 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: check-off-mode
+  annotations:
+    policies.kyverno.io/title: VPA in "Off" Mode
+    policies.kyverno.io/category: Best Practices
+    policies.kyverno.io/severity: medium
+    policies.kyverno.io/subject: VerticalPodAutoscaler
+    policies.kyverno.io/description: Detects VerticalPodAutoscalers (VPAs) with recommendation mode set to "Off".
+spec:
+  validationFailureAction: audit
+  background: false
+  rules:
+    - name: check-off-mode
+      match:
+        resources:
+          kinds:
+            - VerticalPodAutoscaler
+      validate:
+        message: "VerticalPodAutoscaler '{{ request.object.metadata.name }}' has recommendation mode set to 'Off'."
+        pattern:
+          spec:
+            updateMode: "Off" 

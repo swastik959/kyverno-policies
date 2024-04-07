@@ -31,23 +31,23 @@ spec:
         - name: lowerBoundCpu
           apiCall:
             urlPath: "/apis/autoscaling.k8s.io/v1/namespaces/{{request.object.metadata.namespace}}/verticalpodautoscalers"
-            jmesPath: "items[?metadata.name == '{{ request.object.matadata.name }}' && ?spec.targetRef.kind=='{{ request.object.kind }}'].status.recommendation.containerRecommendations[].lowerBound.cpu"
+            jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}' && spec.targetRef.kind=='{{ request.object.kind }}'].status.recommendation.containerRecommendations[].lowerBound.cpu"
         - name: lowerBoundMemory
           apiCall:
             urlPath: "/apis/autoscaling.k8s.io/v1/namespaces/{{request.object.metadata.namespace}}/verticalpodautoscalers"
-            jmesPath: "items[?metadata.name == '{{ request.object.matadata.name }}' && ?spec.targetRef.kind=='{{ request.object.kind }}'].status.recommendation.containerRecommendations[].lowerBound.memory"
+            jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}' && spec.targetRef.kind=='{{ request.object.kind }}'].status.recommendation.containerRecommendations[].lowerBound.memory"
         - name: upperBoundCpu
           apiCall:
             urlPath: "/apis/autoscaling.k8s.io/v1/namespaces/{{request.object.metadata.namespace}}/verticalpodautoscalers"
-            jmesPath: "items[?metadata.name == '{{ request.object.matadata.name }}' && ?spec.targetRef.kind=='{{ request.object.kind }}'].status.recommendation.containerRecommendations[].upperBound.cpu"
+            jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}' && spec.targetRef.kind=='{{ request.object.kind }}'].status.recommendation.containerRecommendations[].upperBound.cpu"
         - name: upperBoundMemory
           apiCall:
             urlPath: "/apis/autoscaling.k8s.io/v1/namespaces/{{request.object.metadata.namespace}}/verticalpodautoscalers"
-            jmesPath: "items[?metadata.name == '{{ request.object.matadata.name }}' && ?spec.targetRef.kind=='{{ request.object.kind }}'].status.recommendation.containerRecommendations[].upperBound.memory"
+            jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}' && spec.targetRef.kind=='{{ request.object.kind }}'].status.recommendation.containerRecommendations[].upperBound.memory"
         - name: creationTimestamp
           apiCall:
             urlPath: "/apis/autoscaling.k8s.io/v1/namespaces/{{request.object.metadata.namespace}}/verticalpodautoscalers"
-            jmesPath: "items[?metadata.name == '{{ request.object.matadata.name }}' && ?spec.targetRef.kind=='{{ request.object.kind }}'].metadata.creationTimestamp"
+            jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}' && spec.targetRef.kind=='{{ request.object.kind }}'].metadata.creationTimestamp"
       validate:
         message: >-
           Workload '{{request.object.kind}}/{{request.object.metadata.name}}' 

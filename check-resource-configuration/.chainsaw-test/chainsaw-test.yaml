@@ -1,0 +1,35 @@
+apiVersion: chainsaw.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: check-resource-configuration
+spec:
+  steps:
+  - name: 01 - Create policy 
+    try:
+    - apply:
+        file: ../check-resource-configuration.yaml
+    - patch:
+        resource:
+          apiVersion: kyverno.io/v1
+          kind: ClusterPolicy
+          metadata:
+            name: check-resource-configuration
+          spec:
+            validationFailureAction: Enforce
+    - assert:
+        file: chainsaw-step-01-assert-1.yaml
+  - name: 04 - Create VPA 
+    try:
+    - apply:
+        file: vpa.yaml
+  - name: 05 - Create Bad Deployment
+    try:
+    - apply:
+        file: bad-deployment.yaml
+        expect:
+        - check:
+            ($error != null): true
+  - name: 06 - Create Good Deployment
+    try:
+    - apply:
+        file: good-deployment.yaml

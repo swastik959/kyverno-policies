@@ -1,0 +1,43 @@
+apiVersion: autoscaling.k8s.io/v1beta2
+kind: VerticalPodAutoscaler
+metadata:
+  name: nginx-vpa
+spec:
+  targetRef:
+    apiVersion: "apps/v1"
+    kind: Deployment
+    name: nginx
+  updatePolicy:
+    updateMode: "Off"
+  resourcePolicy:
+    containerPolicies:
+    - containerName: "nginx"
+      minAllowed:
+        cpu: "50m"
+        memory: "100Mi"
+      maxAllowed:
+        cpu: "250m"
+        memory: "300Mi"
+
+---
+
+apiVersion: autoscaling.k8s.io/v1beta2
+kind: VerticalPodAutoscaler
+metadata:
+  name: nginx-vpa-2
+spec:
+  targetRef:
+    apiVersion: "apps/v1"
+    kind: Deployment
+    name: nginx-2
+  updatePolicy:
+    updateMode: "Off"
+  resourcePolicy:
+    containerPolicies:
+    - containerName: "nginx"
+      minAllowed:
+        cpu: "50m"
+        memory: "100Mi"
+      maxAllowed:
+        cpu: "250m"
+        memory: "300Mi"

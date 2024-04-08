@@ -1,0 +1,34 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: generate-vpa-recommender
+  annotations:
+    policies.kyverno.io/category: Other
+    policies.kyverno.io/severity: medium
+    kyverno.io/kyverno-version: 1.11.4 
+    kyverno.io/kubernetes-version: "1.27"     
+    policies.kyverno.io/subject: Deployment, Pod
+    policies.kyverno.io/description: Creates a VPA in 'Off' mode for Deployments, providing resource recommendations.
+spec:
+  validationFailureAction: Audit 
+  background: false            
+  rules:
+    - name: create-vpa-recommender
+      match:
+        any:
+        - resources:
+            kinds:
+              - Deployment
+              - Pod
+      generate:
+        kind: VerticalPodAutoscaler
+        name: "{{ request.object.metadata.name }}-vpa" 
+        namespace: "{{ request.object.metadata.namespace }}"
+        data:
+          spec:
+            targetRef:
+              apiVersion: "{{ request.object.apiVersion }}"
+              kind: "{{ request.object.kind }}"
+              name: "{{ request.object.metadata.name }}"
+            updatePolicy:
+              updateMode: "Off" 

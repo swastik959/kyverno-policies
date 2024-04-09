@@ -22,7 +22,7 @@ spec:
               - Pod
       preconditions:
         all:
-        - key: "{{ chack-hpa }}"
+        - key: "{{ check-hpa }}"
           operator: Equals
           value: null
       context:

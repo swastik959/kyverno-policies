@@ -15,7 +15,7 @@ spec:
   validationFailureAction: Audit
   background: false
   rules:
-    - name: check-vpa-configuration
+    - name: check-resource-configuration
       match:
         any:
         - resources:
@@ -24,7 +24,7 @@ spec:
               - Pod
       preconditions:
         all:
-        - key: "{{ time_diff('{{ creationTimestamp }}','{{ time_now_utc() }}') }}"
+        - key: "{{ time_diff(time_parse('2006-01-02T15:04:05Z07:00', '{{ creationTimestamp }}'), time_parse('2006-01-02T15:04:05Z07:00', '{{ time_now_utc() }}')) }}"
           operator: LessThanOrEquals
           value: "168h"
       context:

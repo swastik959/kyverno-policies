@@ -24,9 +24,12 @@ spec:
               - Pod
       preconditions:
         all:
-        - key: "{{ time_diff(time_parse('2006-01-02T15:04:05Z07:00', '{{ creationTimestamp }}'), time_parse('2006-01-02T15:04:05Z07:00', '{{ time_now_utc() }}')) }}"
+        - key: "{{ time_diff(time_parse('2006-01-02T15:04:05Z07:00','{{ creationTimestamp }}'), time_parse('2006-01-02T15:04:05Z07:00','{{ time_now() }}')) }}"
           operator: LessThanOrEquals
           value: "168h"
+        - key: "{{ OffMode }}"
+          operator: Equals
+          value: 'Off'
       context:
         - name: lowerBoundCpu
           apiCall:
@@ -47,7 +50,11 @@ spec:
         - name: creationTimestamp
           apiCall:
             urlPath: "/apis/autoscaling.k8s.io/v1/namespaces/{{request.object.metadata.namespace}}/verticalpodautoscalers"
-            jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}' && spec.targetRef.kind=='{{ request.object.kind }}'].metadata.creationTimestamp"
+            jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}' && spec.targetRef.kind=='{{ request.object.kind }}'].metadata.creationTimestamp[] | [0]"
+        - name: OffMode
+          apiCall:
+            urlPath: "/apis/autoscaling.k8s.io/v1/namespaces/{{request.object.metadata.namespace}}/verticalpodautoscalers"
+            jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}' && spec.targetRef.kind=='{{ request.object.kind }}'].spec.updatePolicy.updateMode[] | [0]"
       validate:
         message: >-
           Workload '{{request.object.kind}}/{{request.object.metadata.name}}' 

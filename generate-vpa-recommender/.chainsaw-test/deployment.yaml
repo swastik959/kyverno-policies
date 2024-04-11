@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-2
+  name: nginx-deployment
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: my-app-2
+      app: my-app-deployment
   template:
     metadata:
       labels:
-        app: my-app-2
+        app: my-app-deployment
     spec:
       containers:
-      - name: nginx-2
+      - name: nginx-deployment
         image: nginx
         ports:
-        - containerPort: 8080
+        - containerPort: 8081
         resources:
           requests:
-            cpu: 30m
-            memory: 70Mi
+            cpu: 100m
+            memory: 128Mi
           limits:
-            cpu: 300m
-            memory: 500Mi
+            cpu: 200m
+            memory: 256Mi

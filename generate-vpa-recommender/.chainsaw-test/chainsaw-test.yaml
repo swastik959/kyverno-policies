@@ -1,0 +1,22 @@
+apiVersion: chainsaw.kyverno.io/v1alpha1
+kind: Test
+metadata:
+  name: generate-vpa-recommender
+spec:
+  steps:
+  - name: step-01
+    try:
+    - apply:
+        file: chainsaw-step-01-apply-1.yaml
+  - name: step-02
+    try:
+    - apply:
+        file: ../generate-vpa-recommender.yaml
+    - assert:
+        file: chainsaw-step-01-assert-1.yaml
+  - name: step-03
+    try:
+    - apply:
+        file: deployment.yaml
+    - assert:
+        file: vpa.yaml

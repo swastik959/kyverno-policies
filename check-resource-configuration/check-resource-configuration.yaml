@@ -12,7 +12,7 @@ metadata:
     policies.kyverno.io/description: >-
       Policy to check if the resource allocation is within the lower and upperbound of the VPA.
 spec:
-  validationFailureAction: Audit
+  validationFailureAction: Enforce
   background: false
   rules:
     - name: check-resource-configuration
@@ -29,7 +29,7 @@ spec:
           value: "168h"
         - key: "{{ OffMode }}"
           operator: Equals
-          value: 'Off'
+          value: "Off"
       context:
         - name: lowerBoundCpu
           apiCall:
@@ -61,7 +61,7 @@ spec:
           requires a matching VerticalPodAutoscaler (VPA) in the 
           '{{request.object.metadata.namespace}}' namespace.
         foreach:
-        - list: request.object.spec.containers[]
+        - list: request.object.spec.template.spec.containers[]
           deny:
             conditions:
               all:

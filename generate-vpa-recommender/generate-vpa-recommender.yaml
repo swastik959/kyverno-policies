@@ -20,11 +20,16 @@ spec:
             kinds:
               - Deployment
               - Pod
+      preconditions:
+        all:
+        - key: "{{ request.object.metadata.name }}"
+          operator: NotIn
+          value: "{{ checkHpa }}"  
       context:
-        - name: check-hpa
+        - name: checkHpa
           apiCall:
             urlPath: "/apis/autoscaling/v2/namespaces/{{request.object.metadata.namespace}}/horizontalpodautoscalers"
-            jmesPath: "items[?spec.scaleTargetRef.name == '{{ request.object.metadata.name }}' && spec.scaleTargetRef.kind=='{{ request.object.kind }}'].metadata.name"
+            jmesPath: "items[?metadata.name=='{{request.object.metadata.name}}'].metadata.name"
       generate:
         kind: VerticalPodAutoscaler
         apiVersion: autoscaling.k8s.io/v1

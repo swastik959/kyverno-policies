@@ -22,14 +22,10 @@ spec:
     try:
     - apply:
         file: vpa.yaml
-    - sleep:
-        duration: 30s
   - name: 03 - Create Good Deployment
     try:
     - apply:
         file: good-deployment.yaml
-    - sleep:
-        duration: 30s
   - name: 04 - Create Bad Deployment
     try:
     - apply:
@@ -37,4 +33,3 @@ spec:
         expect:
         - check:
             ($error != null): true
- 

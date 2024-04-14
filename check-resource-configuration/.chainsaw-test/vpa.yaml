@@ -1,4 +1,4 @@
-apiVersion: autoscaling.k8s.io/v1beta2
+apiVersion: autoscaling.k8s.io/v1
 kind: VerticalPodAutoscaler
 metadata:
   name: nginx-vpa
@@ -21,7 +21,7 @@ spec:
 
 ---
 
-apiVersion: autoscaling.k8s.io/v1beta2
+apiVersion: autoscaling.k8s.io/v1
 kind: VerticalPodAutoscaler
 metadata:
   name: nginx-vpa-2
@@ -34,7 +34,7 @@ spec:
     updateMode: "Off"
   resourcePolicy:
     containerPolicies:
-    - containerName: "nginx"
+    - containerName: "nginx-deployment-2"
       minAllowed:
         cpu: "50m"
         memory: "100Mi"

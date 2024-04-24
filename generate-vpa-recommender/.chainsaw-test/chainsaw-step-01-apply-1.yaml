@@ -13,5 +13,8 @@ rules:
   - verticalpodautoscalers
   verbs:
   - create
+  - get
   - update
   - delete
+  - list
+  - watch

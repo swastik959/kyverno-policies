@@ -26,6 +26,8 @@ spec:
     try:
     - apply:
         file: good-deployment.yaml
+    - sleep:
+        duration: 30s
   - name: 04 - Create Bad Deployment
     try:
     - apply:

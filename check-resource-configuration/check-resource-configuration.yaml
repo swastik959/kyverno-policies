@@ -25,40 +25,57 @@ spec:
       preconditions:
         all:
         - key: "{{ time_diff(time_parse('2006-01-02T15:04:05Z07:00','{{ creationTimestamp }}'), time_parse('2006-01-02T15:04:05Z07:00','{{ time_now() }}')) }}"
-          operator: LessThanOrEquals
+          operator: GreaterThanOrEquals
           value: "168h"
-        - key: "{{ OffMode }}"
+        - key: "{{ offmode }}"
           operator: Equals
           value: "Off"
+        - key: "{{ lowerBoundCpu == '' }}"
+          operator: Equals
+          value: "false"
+        - key: "{{ lowerBoundMemory == '' }}"
+          operator: Equals
+          value: "false"
+        - key: "{{ upperBoundCpu == '' }}"
+          operator: Equals
+          value: "false"
+        - key: "{{ upperBoundMemory == '' }}"
+          operator: Equals
+          value: "false"
+        - key: "{{ offmode == '' }}"
+          operator: Equals
+          value: "false"
+        - key: "{{ creationTimestamp == '' }}"
+          operator: Equals
+          value: "false"
       context:
-        - name: vpaList
+        - name: vpalist
           apiCall:
             urlPath: "/apis/autoscaling.k8s.io/v1/namespaces/{{request.object.metadata.namespace}}/verticalpodautoscalers"
-            jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}']"
         - name: lowerBoundCpu
           variable: 
-            value: "{{ vpaList }}"
-            jmesPath: "status.recommendation.containerRecommendations[].lowerBound.cpu"
+            value: "{{ vpalist }}"
+            jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}'].status.recommendation.containerRecommendations[].lowerBound.cpu | [0] || ''"
         - name: lowerBoundMemory
           variable: 
-            value: "{{ vpaList }}"
-            jmesPath: "status.recommendation.containerRecommendations[].lowerBound.memory"
+            value: "{{ vpalist }}"
+            jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}'].status.recommendation.containerRecommendations[].lowerBound.memory | [0] || ''"
         - name: upperBoundCpu
           variable: 
-            value: "{{ vpaList }}"
-            jmesPath: "status.recommendation.containerRecommendations[].upperBound.cpu"
+            value: "{{ vpalist }}"
+            jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}'].status.recommendation.containerRecommendations[].upperBound.cpu | [0] || ''"
         - name: upperBoundMemory
           variable: 
-            value: "{{ vpaList }}"
-            jmesPath: "status.recommendation.containerRecommendations[].upperBound.memory"
+            value: "{{ vpalist }}"
+            jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}'].status.recommendation.containerRecommendations[].upperBound.memory | [0] || ''"
         - name: creationTimestamp
           variable: 
-            value: "{{ vpaList }}"
-            jmesPath: "metadata.creationTimestamp[] | [0]"
-        - name: OffMode
+            value: "{{ vpalist }}"
+            jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}'].metadata.creationTimestamp | [0] || ''"
+        - name: offmode
           variable: 
-            value: "{{ vpaList }}"
-            jmesPath: "spec.updatePolicy.updateMode[] | [0]"
+            value: "{{ vpalist }}"
+            jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}'].spec.updatePolicy.updateMode | [0] || ''"
       validate:
         message: >-
           Workload '{{request.object.kind}}/{{request.object.metadata.name}}' 

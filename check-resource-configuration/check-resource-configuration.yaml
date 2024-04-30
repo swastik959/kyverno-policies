@@ -71,7 +71,7 @@ spec:
         - name: creationTimestamp
           variable: 
             value: "{{ vpalist }}"
-            jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}'].metadata.creationTimestamp | [0] || '0'"
+            jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}'].metadata.creationTimestamp | [0] || ''"
         - name: offmode
           variable: 
             value: "{{ vpalist }}"

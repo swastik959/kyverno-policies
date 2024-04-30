@@ -24,18 +24,6 @@ spec:
               - Pod
       preconditions:
         all:
-        - key: "{{ time_diff(time_parse('2006-01-02T15:04:05Z07:00','{{ creationTimestamp }}'), time_parse('2006-01-02T15:04:05Z07:00','{{ time_now() }}')) }}"
-          operator: GreaterThanOrEquals
-          value: "168h"
-        - key: "{{ offmode }}"
-          operator: Equals
-          value: "Off"
-        - key: "{{ lowerBoundCpu == '' }}"
-          operator: Equals
-          value: "false"
-        - key: "{{ lowerBoundMemory == '' }}"
-          operator: Equals
-          value: "false"
         - key: "{{ upperBoundCpu == '' }}"
           operator: Equals
           value: "false"
@@ -45,9 +33,21 @@ spec:
         - key: "{{ offmode == '' }}"
           operator: Equals
           value: "false"
+        - key: "{{ lowerBoundMemory == '' }}"
+          operator: Equals
+          value: "false"
+        - key: "{{ lowerBoundCpu == '' }}"
+          operator: Equals
+          value: "false"
         - key: "{{ creationTimestamp == '' }}"
           operator: Equals
           value: "false"
+        - key: "{{ time_diff(time_parse('2006-01-02T15:04:05Z07:00','{{ creationTimestamp }}'), time_parse('2006-01-02T15:04:05Z07:00','{{ time_now() }}')) }}"
+          operator: LessThanOrEquals
+          value: "168h"
+        - key: "{{ offmode }}"
+          operator: Equals
+          value: "Off"
       context:
         - name: vpalist
           apiCall:
@@ -71,7 +71,7 @@ spec:
         - name: creationTimestamp
           variable: 
             value: "{{ vpalist }}"
-            jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}'].metadata.creationTimestamp | [0] || ''"
+            jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}'].metadata.creationTimestamp | [0] || '0'"
         - name: offmode
           variable: 
             value: "{{ vpalist }}"

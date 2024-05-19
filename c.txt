@@ -1,0 +1,767 @@
+
+Applying 1 policy rule to 50 resources...
+----------------------------------------------------------------------
+POLICY REPORT:
+----------------------------------------------------------------------
+apiVersion: wgpolicyk8s.io/v1alpha2
+kind: ClusterPolicyReport
+metadata:
+  name: clusterpolicyreport
+results:
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: kyverno-cleanup-admission-reports-28601660-cc9mr
+    namespace: kyverno
+    uid: 73eed4ec-cb7c-44e0-837b-486c54a1f693
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: kyverno-cleanup-cluster-admission-reports-28601660-vnsx9
+    namespace: kyverno
+    uid: ed64a19e-ab16-480a-9465-de603d525a90
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: kyverno-cleanup-controller
+    namespace: kyverno
+    uid: 400b2415-1fa1-489a-ae32-914c2ba143da
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: kyverno-reports-controller
+    namespace: kyverno
+    uid: a42b5bf6-e01c-4cc4-a3d5-70607c79b49e
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: kyverno-background-controller-85cd8cc4c5-nhn44
+    namespace: kyverno
+    uid: f5c02ae9-113b-46c8-9d94-527403ea95c6
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: kyverno-admission-controller
+    namespace: kyverno
+    uid: ab42d0e2-2347-4a3a-8b09-143ade5213a7
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: kyverno-background-controller
+    namespace: kyverno
+    uid: 0fabd816-00be-458e-a11f-ed0618517442
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: kyverno-admission-controller-76fcbc67c7-2ck2g
+    namespace: kyverno
+    uid: d5568a23-5e18-4292-9b84-d6cba7812c08
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: kyverno-cleanup-controller-596f44fcc6-jvllm
+    namespace: kyverno
+    uid: 247759d4-6f32-4f9c-a015-7982d5c92bcb
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: kyverno-reports-controller-f4654cb6d-dpf7v
+    namespace: kyverno
+    uid: 721d183c-f038-4cd9-ac16-ef79c2aa9461
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: local-path-provisioner
+    namespace: local-path-storage
+    uid: 43fd1e57-803e-434d-9416-b60f40d4a733
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: local-path-provisioner-6f8956fb48-4xcct
+    namespace: local-path-storage
+    uid: 39319a86-e7a7-4d0d-87ee-f90f09a021ea
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: prometheus-grafana
+    namespace: default
+    uid: 30ad66ed-cf62-486f-9421-c11f1e69a58b
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: vpa-recommender-5f77b9bdff-kd7nm
+    namespace: default
+    uid: 3458ed2e-930b-406f-8dd6-324735aa0010
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: vpa-updater
+    namespace: default
+    uid: f7824303-962a-428f-bed3-a19ef7b58fd4
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: vpa-admission-controller-678879fc56-gw87x
+    namespace: default
+    uid: b316dfc1-957f-4ec9-9d89-e4e17f323020
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: my-deployment-5577cf8f95-glgln
+    namespace: default
+    uid: 20dcde32-1cc5-4d9f-9c0e-1ae107f2f846
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: prometheus-kube-state-metrics-59b5d58f8f-8bdft
+    namespace: default
+    uid: 7da462ac-12fc-402a-b6e5-88a1f04de5ae
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: vpa-updater-c95f89c8f-kch45
+    namespace: default
+    uid: c3439df9-64c1-4ef7-9b61-a22e10b163bb
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: alertmanager-prometheus-kube-prometheus-alertmanager-0
+    namespace: default
+    uid: 3575b236-fceb-443b-b44e-7d858dd723ab
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: prometheus-kube-prometheus-operator-57756d9c7b-z5zh6
+    namespace: default
+    uid: 9be7bf36-452c-4dc0-ba91-fceadeb0f814
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: prometheus-prometheus-kube-prometheus-prometheus-0
+    namespace: default
+    uid: 30a0c8cf-3804-42ce-809b-97b0b6c898a6
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: prometheus-prometheus-node-exporter-bz62v
+    namespace: default
+    uid: dd4a2a82-a3a9-4006-9dee-fa79efc5ff46
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: prometheus-kube-prometheus-operator
+    namespace: default
+    uid: 60bd46bc-8cc4-457a-bc9c-96ba168501f6
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: vpa-recommender
+    namespace: default
+    uid: a8a34b2a-4c25-48e4-94cc-2ae8b2e259f2
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: prometheus-kube-state-metrics
+    namespace: default
+    uid: 85fe2955-e9fc-4e02-9f42-7e94231bdce9
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: my-deployment-5577cf8f95-b8f2j
+    namespace: default
+    uid: 2092c6ad-c52b-437f-b60a-99816399ce66
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: prometheus-grafana-754c68c9d4-cpdqq
+    namespace: default
+    uid: 3a21de9c-db8e-4b9d-9a05-5260a44816f7
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: rule passed
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: my-deployment
+    namespace: default
+    uid: 53ebc3b3-115c-4f4d-82c1-82128d607dc8
+  result: pass
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: vpa-admission-controller
+    namespace: default
+    uid: 0582e0ab-6d58-412c-8629-4e49265caae0
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: coredns
+    namespace: kube-system
+    uid: bea19f8a-54b9-4579-8851-7ab23b347333
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: kube-scheduler-kind-control-plane
+    namespace: kube-system
+    uid: d0a1f2ed-39b2-4ec2-a4e3-dfa1f8db93b4
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: vpa-updater-884d4d7d9-8k6tq
+    namespace: kube-system
+    uid: 00a01c20-379a-4587-9ce2-40ffc739853c
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: kindnet-wpksr
+    namespace: kube-system
+    uid: 0e32d37d-3238-49b3-b72b-8b1930a21e22
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: kube-apiserver-kind-control-plane
+    namespace: kube-system
+    uid: c9fbbed2-b005-4d00-b657-7d7a35cf848c
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: metrics-server-774d4498db-6plmz
+    namespace: kube-system
+    uid: edf2f9f5-6a6c-48b8-a62b-f3590824b1e9
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: metrics-server
+    namespace: kube-system
+    uid: 9bfac71b-cb19-43f0-9c08-9886772c8286
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: vpa-updater
+    namespace: kube-system
+    uid: a310bcfd-d39f-42a8-9c15-d4a61d7576bd
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: coredns-5dd5756b68-p5fsl
+    namespace: kube-system
+    uid: d201fdf3-4c99-443d-b770-ebdb58c36cf8
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: kube-proxy-7dpqp
+    namespace: kube-system
+    uid: b4f1c9ed-042a-46d3-984d-edd8529b25d3
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: coredns-5dd5756b68-qbw6h
+    namespace: kube-system
+    uid: 1df910b1-1fe0-4c1e-b111-66a4db680662
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: etcd-kind-control-plane
+    namespace: kube-system
+    uid: 9c3c06dd-cd7a-407c-acc3-74d59dc438da
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: kube-controller-manager-kind-control-plane
+    namespace: kube-system
+    uid: e63997dc-e6dc-4167-b814-0c4b3c930d1d
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: kube-state-metrics-6cf6f65cf7-qwn6q
+    namespace: kube-state-metrics
+    uid: 8e33a3bd-9e8f-44c2-ac4b-828998652684
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: kube-state-metrics
+    namespace: kube-state-metrics
+    uid: 753b4de0-30b0-478e-b536-68bdf2792c03
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: goldilocks-dashboard
+    namespace: goldilocks
+    uid: 6c54e1b1-7d1c-44a1-9082-6c03fffab59c
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: goldilocks-dashboard-f89794564-dz4jw
+    namespace: goldilocks
+    uid: 2d405a6d-b24b-44c8-981f-ad6f52a45c2c
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: apps/v1
+    kind: Deployment
+    name: goldilocks-controller
+    namespace: goldilocks
+    uid: 90ea4f28-afc2-4764-a58c-ba329e035d1f
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: goldilocks-controller-5bfd7f9486-2zhxv
+    namespace: goldilocks
+    uid: b4af7f24-ff40-4cf2-96ff-befbf9128403
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+- message: preconditions not met
+  policy: check-resource-configuration
+  resources:
+  - apiVersion: v1
+    kind: Pod
+    name: goldilocks-dashboard-f89794564-zjpdk
+    namespace: goldilocks
+    uid: c8ed4599-eb09-41cc-a218-806b44cf0cea
+  result: skip
+  rule: check-resource-configuration
+  scored: true
+  source: kyverno
+  timestamp:
+    nanos: 0
+    seconds: 1716100082
+summary:
+  error: 0
+  fail: 0
+  pass: 1
+  skip: 49
+  warn: 0
+

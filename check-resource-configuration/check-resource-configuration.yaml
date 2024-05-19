@@ -6,95 +6,96 @@ metadata:
     policies.kyverno.io/title: Check resource configuration
     policies.kyverno.io/category: Other
     policies.kyverno.io/severity: medium
-    kyverno.io/kyverno-version: 1.11.4 
-    kyverno.io/kubernetes-version: "1.27"     
+    kyverno.io/kyverno-version: 1.11.4
+    kyverno.io/kubernetes-version: "1.27"
     policies.kyverno.io/subject: Deployment, Pod, VerticalPodAutoscaler
     policies.kyverno.io/description: >-
       Policy to check if the resource allocation is within the lower and upperbound of the VPA.
 spec:
-  validationFailureAction: Audit
-  background: false
+  validationFailureAction: Enforce
+  background: true
   rules:
     - name: check-resource-configuration
       match:
         any:
-        - resources:
-            kinds:
-              - Deployment
-              - Pod
+          - resources:
+              kinds:
+                - Deployment
+                - Pod
       preconditions:
         all:
-        - key: "{{ upperBoundCpu == '' }}"
-          operator: Equals
-          value: "false"
-        - key: "{{ upperBoundMemory == '' }}"
-          operator: Equals
-          value: "false"
-        - key: "{{ offmode == '' }}"
-          operator: Equals
-          value: "false"
-        - key: "{{ lowerBoundMemory == '' }}"
-          operator: Equals
-          value: "false"
-        - key: "{{ lowerBoundCpu == '' }}"
-          operator: Equals
-          value: "false"
-        - key: "{{ creationTimestamp == '' }}"
-          operator: Equals
-          value: "false"
-        - key: "{{ time_diff(time_parse('2006-01-02T15:04:05Z07:00','{{ creationTimestamp }}'), time_parse('2006-01-02T15:04:05Z07:00','{{ time_now() }}')) }}"
-          operator: LessThanOrEquals
-          value: "168h"
-        - key: "{{ offmode }}"
-          operator: Equals
-          value: "Off"
+          - key: "{{ creationTimestamp == '' }}"
+            operator: Equals
+            value: false
+          - key: "{{ time_diff(time_parse('2006-01-02T15:04:05Z07:00','{{ creationTimestamp }}'), time_parse('2006-01-02T15:04:05Z07:00','{{ time_now() }}')) }}"
+            operator: LessThanOrEquals
+            value: "168h"
+          - key: "{{ upperBoundCpu == '' }}"
+            operator: Equals
+            value: false
+          - key: "{{ upperBoundMemory == '' }}"
+            operator: Equals
+            value: false
+          - key: "{{ offmode == '' }}"
+            operator: Equals
+            value: false
+          - key: "{{ lowerBoundMemory == '' }}"
+            operator: Equals
+            value: false
+          - key: "{{ lowerBoundCpu == '' }}"
+            operator: Equals
+            value: false
+          - key: "{{ offmode }}"
+            operator: Equals
+            value: "Off"
       context:
         - name: vpalist
           apiCall:
             urlPath: "/apis/autoscaling.k8s.io/v1/namespaces/{{request.object.metadata.namespace}}/verticalpodautoscalers"
         - name: lowerBoundCpu
-          variable: 
+          variable:
             value: "{{ vpalist }}"
             jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}'].status.recommendation.containerRecommendations[].lowerBound.cpu | [0] || ''"
         - name: lowerBoundMemory
-          variable: 
+          variable:
             value: "{{ vpalist }}"
             jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}'].status.recommendation.containerRecommendations[].lowerBound.memory | [0] || ''"
         - name: upperBoundCpu
-          variable: 
+          variable:
             value: "{{ vpalist }}"
             jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}'].status.recommendation.containerRecommendations[].upperBound.cpu | [0] || ''"
         - name: upperBoundMemory
-          variable: 
+          variable:
             value: "{{ vpalist }}"
             jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}'].status.recommendation.containerRecommendations[].upperBound.memory | [0] || ''"
         - name: creationTimestamp
-          variable: 
+          variable:
             value: "{{ vpalist }}"
             jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}'].metadata.creationTimestamp | [0] || ''"
         - name: offmode
-          variable: 
+          variable:
             value: "{{ vpalist }}"
             jmesPath: "items[?spec.targetRef.name == '{{ request.object.metadata.name }}'].spec.updatePolicy.updateMode | [0] || ''"
       validate:
         message: >-
-          Workload '{{request.object.kind}}/{{request.object.metadata.name}}' 
-          requires a matching VerticalPodAutoscaler (VPA) in the 
-          '{{request.object.metadata.namespace}}' namespace.
+          Container '{{ request.object.spec.template.spec.containers[0].name }}' in workload '{{request.object.kind}}/{{request.object.metadata.name}}'
+          has resource requests outside the recommended bounds defined in the associated VPA.
+          Lower bound CPU: {{ lowerBoundCpu }}, Memory: {{ lowerBoundMemory }}
+          Upper bound CPU: {{ upperBoundCpu }}, Memory: {{ upperBoundMemory }}
         foreach:
-        - list: request.object.spec.template.spec.containers[]
-          deny:
-            conditions:
-              all:
-              - key: "{{ element.resources.requests.cpu }}" 
-                operator: LessThan
-                value: "{{ lowerBoundCpu }}"
-              - key: "{{ element.resources.requests.cpu }}" 
-                operator: GreaterThan
-                value: "{{ upperBoundCpu }}"
-              - key: "{{ element.resources.requests.memory }}"
-                operator: LessThan
-                value: "{{ lowerBoundMemory }}"
-              - key: "{{ element.resources.requests.memory }}"
-                operator: GreaterThan
-                value: "{{ upperBoundMemory }}"
+          - list: request.object.spec.template.spec.containers[]
+            deny:
+              conditions:
+                any:
+                  - key: "{{ element.resources.requests.cpu }}"
+                    operator: LessThan
+                    value: "{{ lowerBoundCpu }}"
+                  - key: "{{ element.resources.requests.cpu }}"
+                    operator: GreaterThan
+                    value: "{{ upperBoundCpu }}"
+                  - key: "{{ element.resources.requests.memory }}"
+                    operator: LessThan
+                    value: "{{ lowerBoundMemory }}"
+                  - key: "{{ element.resources.requests.memory }}"
+                    operator: GreaterThan
+                    value: "{{ upperBoundMemory }}"
